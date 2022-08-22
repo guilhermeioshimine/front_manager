@@ -1,0 +1,75 @@
+<div class="content-header">
+  <div class="container-fluid">
+    <mat-toolbar color="primary">
+      <span>{{ titlePage }}</span>
+      <!-- <span class="example-spacer"></span>
+          <button mat-raised-button color="warn">Add</button> -->
+    </mat-toolbar>
+  </div>
+</div>
+
+<mat-card>
+  <mat-form-field appearance="standard">
+    <mat-label>Filter</mat-label>
+    <input
+      matInput
+      (keyup)="applyFilter($event)"
+      placeholder="Ex. Mia"
+      #input
+    />
+  </mat-form-field>
+
+  <table mat-table [dataSource]="dataSource" class="mat-elevation-z8">
+    <ng-container matColumnDef="id">
+      <th mat-header-cell *matHeaderCellDef>ID</th>
+      <td mat-cell *matCellDef="let inventory">{{ inventory.id }}</td>
+    </ng-container>
+
+    <ng-container matColumnDef="product">
+      <th mat-header-cell *matHeaderCellDef>Produto</th>
+      <td mat-cell *matCellDef="let inventory">{{ inventory.product.name }}</td>
+    </ng-container>
+
+    <ng-container matColumnDef="initialAmount">
+      <th mat-header-cell *matHeaderCellDef>Estoque Inicial</th>
+      <td mat-cell *matCellDef="let inventory">
+        {{ inventory.initialAmount }}
+      </td>
+    </ng-container>
+
+    <ng-container matColumnDef="incoming">
+      <th mat-header-cell *matHeaderCellDef>Entrada</th>
+      <td mat-cell *matCellDef="let inventory">{{ inventory.incoming }}</td>
+    </ng-container>
+
+    <ng-container matColumnDef="outcoming">
+      <th mat-header-cell *matHeaderCellDef>Saídas</th>
+      <td mat-cell *matCellDef="let inventory">{{ inventory.outcoming }}</td>
+    </ng-container>
+
+    <ng-container matColumnDef="totalAmount">
+      <th mat-header-cell *matHeaderCellDef>Estoque Final</th>
+      <td mat-cell *matCellDef="let inventory">{{ inventory.totalAmount }}</td>
+    </ng-container>
+
+    <ng-container matColumnDef="actions">
+      <mat-header-cell *matHeaderCellDef>
+        <button mat-mini-fab color="accent" aria-label="Adicionar Empresa">
+          <mat-icon (click)="onAdd()">add</mat-icon>
+        </button>
+      </mat-header-cell>
+      <mat-cell *matCellDef="let inventory"> </mat-cell>
+    </ng-container>
+
+    <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+    <tr mat-row *matRowDef="let row; columns: displayedColumns"></tr>
+
+    <tr class="mat-row" *matNoDataRow>
+      <td class="mat-cell" colspan="4">No data matching the filter</td>
+    </tr>
+  </table>
+  <mat-paginator
+    [pageSizeOptions]="[10, 20, 50, 100]"
+    aria-label="Select page of users"
+  ></mat-paginator>
+</mat-card>

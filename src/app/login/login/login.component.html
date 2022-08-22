@@ -1,0 +1,40 @@
+<div class="content-header">
+  <div class="container-fluid">
+    <mat-toolbar color="primary">
+      <span>{{ titlePage }}</span>
+      <!-- <span class="example-spacer"></span>
+          <button mat-raised-button color="warn">Add</button> -->
+    </mat-toolbar>
+  </div>
+</div>
+
+<mat-card class="example-card">
+  <mat-card-content>
+    <form [formGroup]="form" class="min-width">
+      <mat-form-field class="full-width" appearance="outline">
+        <input matInput placeholder="Usuário" formControlName="name" />
+      </mat-form-field>
+
+      <mat-form-field appearance="outline" class="full-width">
+        <mat-label>Digite sua senha</mat-label>
+        <input
+          matInput
+          [type]="hide ? 'password' : 'text'"
+          formControlName="password"
+        />
+        <button
+          mat-icon-button
+          matSuffix
+          (click)="hide = !hide"
+          [attr.aria-label]="'Hide password'"
+          [attr.aria-pressed]="hide"
+        >
+          <mat-icon>{{ hide ? "visibility_off" : "visibility" }}</mat-icon>
+        </button>
+      </mat-form-field>
+    </form>
+    <button mat-raised-button color="primary" (click)="onSubmit()">
+      Login
+    </button>
+  </mat-card-content>
+</mat-card>

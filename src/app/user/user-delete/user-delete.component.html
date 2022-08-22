@@ -1,0 +1,12 @@
+<h2 mat-dialog-title>Deletar</h2>
+<mat-dialog-content class="mat-typography">
+  <h3>
+    Tem certeza que deseja deletar o usuário: <b>{{ userName }}</b>
+  </h3>
+</mat-dialog-content>
+<mat-dialog-actions align="end">
+  <button mat-button mat-dialog-close>Cancelar</button>
+  <button mat-button mat-dialog-close (click)="onDelete(userId)">
+    Deletar
+  </button>
+</mat-dialog-actions>
